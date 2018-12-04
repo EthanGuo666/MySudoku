@@ -7,6 +7,7 @@ SudokuOperation::SudokuOperation()
 {
 	memset(move_step_matrix, 0, sizeof(move_step_matrix));
 	memset(result_matrix, 0, sizeof(result_matrix));
+	num_now = 0;
 }
 
 void SudokuOperation::move_step_generate()
@@ -51,7 +52,7 @@ void SudokuOperation::generate_ending(int num)
 			for (int j = 0; j < 9; j++) 
 			{
 				int step = move_step_matrix[i][j];
-				memcpy(result_matrix[j], &joint_line[step], 9 * sizeof(int));
+				memcpy(&result_matrix[j], &joint_line[step], 9*sizeof(int));
 			}
 			for (int j = 0; j < 9; j++)
 			{
