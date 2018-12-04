@@ -7,7 +7,6 @@ SudokuOperation::SudokuOperation()
 {
 	memset(move_step_matrix, 0, sizeof(move_step_matrix));
 	memset(result_matrix, 0, sizeof(result_matrix));
-	memset(first_line_permutation, 0, sizeof(first_line_permutation));
 }
 
 void SudokuOperation::move_step_generate()
@@ -33,24 +32,39 @@ void SudokuOperation::move_step_generate()
 	}
 }
 
-void SudokuOperation::first_line_generate(int num)
-{
-	
-	next_permutation()
-}
-
 void SudokuOperation::generate_ending(int num)
 {
-	//To test if method generate_ending is recalled.
-	//printf("%d endings need to be generated!\n", num);
 	move_step_generate();
-
-	//double the first line of first Sudoku output, and joint them together
 	int first_line[9] = { 9,1,2,3,4,5,6,7,8 };
-	int joint_line[18] = { 9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8 };
-	
-	
-
+	//for the convenience of operation, joint_line is double first_line
+	int joint_line[18];
+	while (next_permutation(&first_line[1], &first_line[9]))
+	{
+		//If we have already generate enough game ending, break
+		if (num_now >= num)
+			break;
+		else
+		{
+			memcpy(joint_line, first_line, sizeof(first_line));
+			memcpy(&joint_line[9], first_line, sizeof(first_line));
+			int i = num_now % 72;
+			for (int j = 0; j < 9; j++) 
+			{
+				int step = move_step_matrix[i][j];
+				memcpy(result_matrix[j], &joint_line[step], 9 * sizeof(int));
+			}
+			for (int j = 0; j < 9; j++)
+			{
+				for (int k = 0; k < 9; k++)
+				{
+					printf("%d ", result_matrix[j][k]);
+				}
+				printf("\n");
+			}
+			printf("\n");
+			num_now++;
+		}
+	}
 }
 
 void SudokuOperation::solve_sudoku()
