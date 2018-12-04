@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Input.h"
 using namespace std;
 
@@ -11,29 +12,39 @@ void Input::inputTypeAnalyse()
 {
 	if (argc == 3)
 	{
-		if (strcmp(argv[1], "-c"))
+		if (strcmp(argv[1], "-c") == 0)
 		{
 			type = 'c';
 			num = tranStringToInt(argv[2]);
 		}
-		if (strcmp(argv[1], "-s"))
+		else
 		{
-			type = 's';
-			filename = argv[2];
+			if (strcmp(argv[1], "-s") == 0)
+			{
+				type = 's';
+				filename = argv[2];
+			}
+			else
+			{
+				if (strcmp(argv[2], "-c") == 0)
+				{
+					type = 'c';
+					num = tranStringToInt(argv[1]);
+				}
+				else 
+				{
+					if (strcmp(argv[2], "-s") == 0)
+					{
+						type = 's';
+						filename = argv[1];
+					}
+					else  printf("cmd input is anomalous! error found in method Input::inputTypeAnalyse()\n");
+				}
+			}
 		}
-		if (strcmp(argv[2], "-c"))
-		{
-			type = 'c';
-			num = tranStringToInt(argv[1]);
-		}
-		if (strcmp(argv[2], "-s"))
-		{
-			type = 's';
-			filename = argv[1];
-		}
-		else  printf("cmd input is anomalous!\n");
 	}
 	else  printf("the number of parameter in cmd is not 3!\n");
+	
 }
 
 char Input::getType()
@@ -51,7 +62,7 @@ char* Input::getFilename()
 	return filename;
 }
 
-int tranStringToInt(char *string)
+int Input::tranStringToInt(char string[])
 {
 	int len = strlen(string);
 	int temp_num = 0;

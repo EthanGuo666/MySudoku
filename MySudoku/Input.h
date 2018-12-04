@@ -16,7 +16,7 @@ public:
 	void inputTypeAnalyse();
 
 	//transform a string to integar
-	friend int tranStringToInt(char *string);
+	int tranStringToInt(char string[]);
 
 	//get the input type:'-c' or '-s', in order to pass these values to SudokuOperation class
 	char getType();
