@@ -25,7 +25,7 @@ void SudokuOperation::move_step_generate()
 				memcpy(step, move_dictionary1[i], 3*sizeof(int));
 				memcpy(&step[3], move_dictionary2[j], 3*sizeof(int));
 				memcpy(&step[6], move_dictionary3[k], 3*sizeof(int));
-				memcpy(&move_step_matrix[count], step, sizeof(int));
+				memcpy(&move_step_matrix[count], step, 9*sizeof(int));
 				count++;
 			}
 		}
