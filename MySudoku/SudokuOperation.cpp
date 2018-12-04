@@ -6,12 +6,13 @@ SudokuOperation::SudokuOperation()
 {
 }
 
-void SudokuOperation::generateEnding(int num)
+void SudokuOperation::generate_ending(int num)
 {
-	printf("%d endings need to be generated!\n", num);
+	//printf("%d endings need to be generated!\n", num);
+
 }
 
-void SudokuOperation::solveSudoku()
+void SudokuOperation::solve_sudoku()
 {
 
 }

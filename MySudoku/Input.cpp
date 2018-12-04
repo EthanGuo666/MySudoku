@@ -8,14 +8,14 @@ Input::Input(int argc, char *argv[])
 	this->argv = argv;
 }
 
-void Input::inputTypeAnalyse()
+void Input::input_type_analyse()
 {
 	if (argc == 3)
 	{
 		if (strcmp(argv[1], "-c") == 0)
 		{
 			type = 'c';
-			num = tranStringToInt(argv[2]);
+			num = tran_string_to_int(argv[2]);
 		}
 		else
 		{
@@ -29,7 +29,7 @@ void Input::inputTypeAnalyse()
 				if (strcmp(argv[2], "-c") == 0)
 				{
 					type = 'c';
-					num = tranStringToInt(argv[1]);
+					num = tran_string_to_int(argv[1]);
 				}
 				else 
 				{
@@ -47,22 +47,22 @@ void Input::inputTypeAnalyse()
 	
 }
 
-char Input::getType()
+char Input::get_type()
 {
 	return type;
 }
 
-int Input::getNum()
+int Input::get_num()
 {
 	return num;
 }
 
-char* Input::getFilename()
+char* Input::get_filename()
 {
 	return filename;
 }
 
-int Input::tranStringToInt(char string[])
+int Input::tran_string_to_int(char string[])
 {
 	int len = strlen(string);
 	int temp_num = 0;
