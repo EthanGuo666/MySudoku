@@ -7,7 +7,7 @@ SudokuOperation::SudokuOperation()
 {
 	memset(move_step_matrix, 0, sizeof(move_step_matrix));
 	memset(result_matrix, 0, sizeof(result_matrix));
-
+	memset(first_line_permutation, 0, sizeof(first_line_permutation));
 }
 
 void SudokuOperation::move_step_generate()
@@ -31,13 +31,19 @@ void SudokuOperation::move_step_generate()
 			}
 		}
 	}
-		
+}
+
+void SudokuOperation::first_line_generate(int num)
+{
+	
+	next_permutation()
 }
 
 void SudokuOperation::generate_ending(int num)
 {
 	//To test if method generate_ending is recalled.
 	//printf("%d endings need to be generated!\n", num);
+	move_step_generate();
 
 	//double the first line of first Sudoku output, and joint them together
 	int first_line[9] = { 9,1,2,3,4,5,6,7,8 };
