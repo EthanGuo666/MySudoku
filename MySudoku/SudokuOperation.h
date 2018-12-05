@@ -16,7 +16,7 @@ public:
 	void generate_ending(int num);
 
 	//Solve the Sudoku game if '-s' and filename is fetched from cmd window
-	void solve_sudoku();
+	void solve_sudoku(char *filename);
 
 
 private:
