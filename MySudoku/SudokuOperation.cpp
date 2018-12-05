@@ -41,29 +41,36 @@ void SudokuOperation::generate_ending(int num)
 	int joint_line[18];
 	while (next_permutation(&first_line[1], &first_line[9]))
 	{
-		//If we have already generate enough game ending, break
 		if (num_now >= num)
 			break;
-		else
+		//use the same permutation for 72 times
+		int circle = 72;
+		while (circle--)
 		{
-			memcpy(joint_line, first_line, sizeof(first_line));
-			memcpy(&joint_line[9], first_line, sizeof(first_line));
-			int i = num_now % 72;
-			for (int j = 0; j < 9; j++) 
+			//If we have already generate enough game ending, break
+			if (num_now >= num)
+				break;
+			else
 			{
-				int step = move_step_matrix[i][j];
-				memcpy(&result_matrix[j], &joint_line[step], 9*sizeof(int));
-			}
-			for (int j = 0; j < 9; j++)
-			{
-				for (int k = 0; k < 9; k++)
+				memcpy(joint_line, first_line, sizeof(first_line));
+				memcpy(&joint_line[9], first_line, sizeof(first_line));
+				int i = num_now % 72;
+				for (int j = 0; j < 9; j++)
 				{
-					printf("%d ", result_matrix[j][k]);
+					int step = move_step_matrix[i][j];
+					memcpy(&result_matrix[j], &joint_line[step], 9 * sizeof(int));
+				}
+				for (int j = 0; j < 9; j++)
+				{
+					for (int k = 0; k < 9; k++)
+					{
+						printf("%d ", result_matrix[j][k]);
+					}
+					printf("\n");
 				}
 				printf("\n");
+				num_now++;
 			}
-			printf("\n");
-			num_now++;
 		}
 	}
 }
