@@ -86,7 +86,7 @@ void SudokuOperation::generate_ending(int num)
 	fclose(file);
 }
 
-void SudokuOperation::solve_sudoku()
+void SudokuOperation::solve_sudoku(char *filename)
 {
 
 }
