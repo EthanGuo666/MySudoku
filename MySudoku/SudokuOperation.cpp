@@ -72,11 +72,11 @@ void SudokuOperation::generate_ending(int num)
 				fprintf(file, "**************************%d\n", num_now + 1);
 				for (int j = 0; j < 9; j++)
 				{
-					for (int k = 0; k < 9; k++)
+					for (int k = 0; k < 8; k++)
 					{
 						fprintf(file, "%d ", result_matrix[j][k]);
 					}
-					fprintf(file,"\n");
+					fprintf(file,"%d\n", result_matrix[j][8]);
 				}
 				fprintf(file,"\n");
 				num_now++;
@@ -88,5 +88,37 @@ void SudokuOperation::generate_ending(int num)
 
 void SudokuOperation::solve_sudoku(char *filename)
 {
+	errno_t err, erw;
+	FILE *rfile, *wfile;
+	err = fopen_s(&rfile, filename, "r");
+	erw = fopen_s(&wfile, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\Debug\\sudoku.txt", "w");
+	if (err != 0 || erw != 0)
+		printf("the input or output file doesn't exist\n");
+	else
+	{
+		//解一个数独的情况
+		int origin_matrix[9][9];
+		int i, j;
+		for (i = 0; i < 9; i++)
+		{
+			for (j = 0; j < 9; j++)
+			{
+				//*blank_or_enter is used for engulfing two kinds of characters, ' ' and '\n'
+				char blank_or_enter;
+				fscanf_s(rfile, "%d%c", &origin_matrix[i][j], &blank_or_enter, sizeof(int) + sizeof(char));
+			}
+		}
+		/*for (i = 0; i < 9; i++)
+		{
+			for (j = 0; j < 9; j++)
+			{
+				fprintf(wfile, "%d", origin_matrix[i][j]);
+			}
+			fprintf(wfile, "\n");
+		}*/
 
+
+	}
+	fclose(rfile);
+	fclose(wfile);
 }
