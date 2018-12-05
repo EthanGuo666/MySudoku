@@ -43,7 +43,7 @@ void Input::input_type_analyse()
 			}
 		}
 	}
-	else  printf("the number of parameter in cmd is not 3!\n");
+	else  printf("%d\n",argc);
 	
 }
 
