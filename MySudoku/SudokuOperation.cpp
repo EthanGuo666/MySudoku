@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "SudokuOperation.h"
 #include <string.h>
+#include <fstream>
+#include <algorithm>
+#include <iostream>
 using namespace std;
 
 SudokuOperation::SudokuOperation()
@@ -35,6 +38,12 @@ void SudokuOperation::move_step_generate()
 
 void SudokuOperation::generate_ending(int num)
 {
+	errno_t err;
+	FILE *file;
+	err = fopen_s(&file, "sudoku.txt", "w");
+	if (err != 0)
+		printf("file doesn't exist\n");
+
 	move_step_generate();
 	int first_line[9] = { 9,1,2,3,4,5,6,7,8 };
 	//for the convenience of operation, joint_line is double first_line
@@ -60,19 +69,21 @@ void SudokuOperation::generate_ending(int num)
 					int step = move_step_matrix[i][j];
 					memcpy(&result_matrix[j], &joint_line[step], 9 * sizeof(int));
 				}
+				fprintf(file, "**************************%d\n", num_now + 1);
 				for (int j = 0; j < 9; j++)
 				{
 					for (int k = 0; k < 9; k++)
 					{
-						printf("%d ", result_matrix[j][k]);
+						fprintf(file, "%d ", result_matrix[j][k]);
 					}
-					printf("\n");
+					fprintf(file,"\n");
 				}
-				printf("\n");
+				fprintf(file,"\n");
 				num_now++;
 			}
 		}
 	}
+	fclose(file);
 }
 
 void SudokuOperation::solve_sudoku()
