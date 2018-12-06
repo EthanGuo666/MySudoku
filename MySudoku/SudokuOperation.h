@@ -19,7 +19,7 @@ public:
 	void solve_sudoku(char *filename);
 
 	//search_solution() is called in solve_sudoku() to search for answer of a given Sudoku puzzle
-	void search_solution(int i, int (&matrix)[9][9]);
+	void search_solution(int i, int j, int (&matrix)[9][9]);
 
 private:
 	//The number of game ending now
