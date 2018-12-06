@@ -18,6 +18,8 @@ public:
 	//Solve the Sudoku game if '-s' and filename is fetched from cmd window
 	void solve_sudoku(char *filename);
 
+	//search_solution() is called in solve_sudoku() to search for answer of a given Sudoku puzzle
+	void search_solution(int (&matrix)[9][9]);
 
 private:
 	//The number of game ending now
