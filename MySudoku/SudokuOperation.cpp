@@ -88,28 +88,51 @@ void SudokuOperation::generate_ending(int num)
 void SudokuOperation::search_solution(int i, int j, int (&matrix)[9][9])
 {
 	//if search has come to an end, return.
-	if (i > 8)
-	{
-		success_sign = true;
+	if (success_sign == true)
 		return;
-	}
-	//if j > 8, which means current line is done, we should search the next line.
-	if (j > 8)
-		search_solution(i + 1, 0, matrix);
-	//if i <= 8 && j <= 8, search in the current line.
-	if (i <= 8 && j <= 8)
+	else
 	{
-		//try each number from 0~9 at current position(i,j).
-		for (int n = 0; n < 9; n++)
+		//if we have finished searching the last line, return 
+		if (i > 8)
 		{
-			if (check(i, j, n, matrix))
+			success_sign = true;
+			return;
+		}
+		//if j > 8, which means current line is done, we have two options.
+		if (j > 8)
+		{
+			//if the current line isn't the last line, search for the next line
+			if (i < 8)
+				search_solution(i + 1, 0, matrix);
+			//If the current line is the last line, return
+			if (i == 8)
 			{
-				matrix[i][j] = n;
-				search_solution(i, j + 1, matrix);
-				//If we successfully find a solution at the end of searching, return
-				if (success_sign == true)
-					return;
-				matrix[i][j] = 0;
+				success_sign = true;
+				return;
+			}
+		}
+		//if current position is not vacant, jump it
+		if (matrix[i][j] != 0)
+			search_solution(i, j + 1, matrix);
+		else
+		{
+			//if i <= 8 && j <= 8, search in the current line.
+			if (i <= 8 && j <= 8)
+			{
+				//try each number from 1~9 at current position(i,j).
+				for (int n = 1; n <= 9; n++)
+				{
+					if (check(i, j, n, matrix))
+					{
+						matrix[i][j] = n;
+						search_solution(i, j + 1, matrix);
+						//If we successfully find a solution at the end of searching, return
+						if (success_sign == true)
+							return;
+						else
+							matrix[i][j] = 0;
+					}
+				}
 			}
 		}
 	}
@@ -131,8 +154,8 @@ bool SudokuOperation::check(int i, int j, int n, int matrix[9][9])
 			return false;
 	}
 	//check the numbers in the same 3*3 square
-	int base_row = i / 3;
-	int base_col = j / 3;
+	int base_row = (i / 3) * 3;
+	int base_col = (j / 3) * 3;
 	for (row = base_row; row < base_row + 3; row++)
 	{
 		for (col = base_col; col < base_col + 3; col++)
@@ -173,14 +196,11 @@ void SudokuOperation::solve_sudoku(char *filename)
 
 			//search for one solution in puzzle_matrix[][], fill the puzzle_matrix from puzzle_matrix[0][0]
 			search_solution(0, 0, puzzle_matrix);
+			success_sign = false;
 
 			for (i = 0; i < 9; i++)
 			{
-				for (j = 0; j < 9; j++)
-				{
-					fprintf(wfile, "%d ", puzzle_matrix[i][j]);
-				}
-				fprintf(wfile, "\n");
+				fprintf(wfile, "%d %d %d %d %d %d %d %d %d\n", puzzle_matrix[i][0], puzzle_matrix[i][1], puzzle_matrix[i][2], puzzle_matrix[i][3], puzzle_matrix[i][4], puzzle_matrix[i][5], puzzle_matrix[i][6], puzzle_matrix[i][7], puzzle_matrix[i][8]);
 			}
 			fprintf(wfile, "\n");
 
