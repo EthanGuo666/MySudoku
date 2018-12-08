@@ -40,6 +40,6 @@ private:
 	//Record the game ending
 	int result_matrix[9][9];
 
-	//The default value of success_sign is False. But if we successfully find one solution, it will be set as True.
+	//The default value of success_sign is false. But if we successfully find one solution, it will be set as True.
 	bool success_sign;
 };
