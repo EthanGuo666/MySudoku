@@ -72,11 +72,13 @@ void SudokuOperation::generate_ending(int num)
 					int step = move_step_matrix[i][j];
 					memcpy(&result_matrix[j], &joint_line[step], 9 * sizeof(int));
 				}
+				
 				for (int j = 0; j < 9; j++)
 				{
-					fprintf(file, "%d %d %d %d %d %d %d %d %d\n", result_matrix[j][0], result_matrix[j][1], result_matrix[j][2], result_matrix[j][3], result_matrix[j][4], result_matrix[j][5], result_matrix[j][5], result_matrix[j][6], result_matrix[j][7], result_matrix[j][8]);
+					fprintf(file, "%d %d %d %d %d %d %d %d %d\n", result_matrix[j][0], result_matrix[j][1], result_matrix[j][2], result_matrix[j][3], result_matrix[j][4], result_matrix[j][5], result_matrix[j][6], result_matrix[j][7], result_matrix[j][8]);
 				}
 				fprintf(file,"\n");
+
 				num_now++;
 			}
 		}
