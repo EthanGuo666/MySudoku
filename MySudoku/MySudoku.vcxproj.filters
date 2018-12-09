@@ -32,13 +32,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MySudoku.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SudokuOperation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sudoku.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
