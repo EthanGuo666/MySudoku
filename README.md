@@ -7,8 +7,8 @@ BITCS, foundmentals of software engineering, personal project
 ├──README.md
 
 ├──sudoku
-
-|    ├──sudoku.cpp
+     ├──sudoku.cpp
+|    
 
 |    ├──Input.h
 
