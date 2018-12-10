@@ -4,13 +4,13 @@ BITCS, foundmentals of software engineering, personal project
 
 项目结构：
 .
-├──README.md
-├──sudoku
-    ├──sudoku.cpp
-    
-    ├──Input.h
-    ├──Input.cpp
-    ├──SudokuOperation.h
-    └──SudokuOperation.cpp
-    
-    └──sudoku.exe
+
+    ├──README.md
+    ├──sudoku
+    |    ├──sudoku.cpp
+    |    ├──Input.h
+    |    ├──Input.cpp
+    |    ├──SudokuOperation.h
+    |    └──SudokuOperation.cpp
+    └──BIN
+        └──sudoku.exe
