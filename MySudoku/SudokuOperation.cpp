@@ -20,17 +20,23 @@ void SudokuOperation::move_step_generate()
 	int move_dictionary2[6][3] = { { 1,4,7 },{ 1,7,4 },{ 4,1,7 },{ 4,7,1 },{ 7,4,1 },{ 7,1,4 } };
 	int move_dictionary3[6][3] = { { 2,5,8 },{ 2,8,5 },{ 5,2,8 },{ 5,8,2 },{ 8,2,5 },{ 8,5,2 } };
 	int i, j, k, count = 0;
-	int step[9];
+	int step[10];
 	for (i = 0; i < 2; i++)
 	{
 		for (j = 0; j < 6; j++)
 		{
 			for (k = 0; k < 6; k++)
 			{
-				memcpy(step, move_dictionary1[i], 3*sizeof(int));
-				memcpy(&step[3], move_dictionary2[j], 3*sizeof(int));
-				memcpy(&step[6], move_dictionary3[k], 3*sizeof(int));
-				memcpy(&move_step_matrix[count], step, 9*sizeof(int));
+				memcpy_s(&step[0], 3 * sizeof(int), &move_dictionary1[i][0], 3 * sizeof(int));
+				memcpy_s(&step[3], 3 * sizeof(int), &move_dictionary1[i][0], 3 * sizeof(int));
+				memcpy_s(&step[6], 3 * sizeof(int), &move_dictionary1[i][0], 3 * sizeof(int));
+				memcpy_s(&move_step_matrix[count], 9 * sizeof(int), &step[0], 9 * sizeof(int));
+				/*
+				memcpy(&step[0], &move_dictionary1[i][0], 3*sizeof(int));
+				memcpy(&step[3], &move_dictionary2[j][0], 3*sizeof(int));
+				memcpy(&step[6], &move_dictionary3[k][0], 3*sizeof(int));
+				memcpy(&move_step_matrix[count], &step[0], 9*sizeof(int));
+				*/
 				count++;
 			}
 		}
