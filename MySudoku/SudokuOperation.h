@@ -13,7 +13,7 @@ class SudokuOperation
 {
 public:
 	//Initialize the SudokuOperation class
-	SudokuOperation();
+	SudokuOperation() noexcept;
 
 	//Generate the end of the game if '-c' and an integar are fetched from cmd window
 	void generate_ending(int num);

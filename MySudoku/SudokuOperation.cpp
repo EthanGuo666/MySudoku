@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-SudokuOperation::SudokuOperation()
+SudokuOperation::SudokuOperation() noexcept
 {
 	memset(move_step_matrix, 0, sizeof(move_step_matrix));
 	memset(result_matrix, 0, sizeof(result_matrix));
