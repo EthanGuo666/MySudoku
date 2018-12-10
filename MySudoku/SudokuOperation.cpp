@@ -28,8 +28,8 @@ void SudokuOperation::move_step_generate()
 			for (k = 0; k < 6; k++)
 			{
 				memcpy_s(&step[0], 3 * sizeof(int), &move_dictionary1[i][0], 3 * sizeof(int));
-				memcpy_s(&step[3], 3 * sizeof(int), &move_dictionary1[i][0], 3 * sizeof(int));
-				memcpy_s(&step[6], 3 * sizeof(int), &move_dictionary1[i][0], 3 * sizeof(int));
+				memcpy_s(&step[3], 3 * sizeof(int), &move_dictionary2[j][0], 3 * sizeof(int));
+				memcpy_s(&step[6], 3 * sizeof(int), &move_dictionary3[k][0], 3 * sizeof(int));
 				memcpy_s(&move_step_matrix[count], 9 * sizeof(int), &step[0], 9 * sizeof(int));
 				/*
 				memcpy(&step[0], &move_dictionary1[i][0], 3*sizeof(int));
