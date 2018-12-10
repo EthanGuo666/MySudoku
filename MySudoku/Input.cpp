@@ -7,6 +7,8 @@ Input::Input(int argc, char *argv[])
 	this->argc = argc;
 	this->argv = argv;
 	filename = NULL;
+	type = 0;
+	num = 0;
 }
 
 void Input::input_type_analyse()
