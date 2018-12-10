@@ -72,18 +72,20 @@ void SudokuOperation::generate_ending(int num)
 					int step = move_step_matrix[i][j];
 					memcpy(&result_matrix[j], &joint_line[step], 9 * sizeof(int));
 				}
-				
-				for (int j = 0; j < 9; j++)
+				if (file != 0)//just for eliminate the warning
 				{
-					fprintf(file, "%d %d %d %d %d %d %d %d %d\n", result_matrix[j][0], result_matrix[j][1], result_matrix[j][2], result_matrix[j][3], result_matrix[j][4], result_matrix[j][5], result_matrix[j][6], result_matrix[j][7], result_matrix[j][8]);
+					for (int j = 0; j < 9; j++)
+					{
+						fprintf(file, "%d %d %d %d %d %d %d %d %d\n", result_matrix[j][0], result_matrix[j][1], result_matrix[j][2], result_matrix[j][3], result_matrix[j][4], result_matrix[j][5], result_matrix[j][6], result_matrix[j][7], result_matrix[j][8]);
+					}
+					fprintf(file, "\n");
 				}
-				fprintf(file,"\n");
-
 				num_now++;
 			}
 		}
 	}
-	fclose(file);
+	if(file!=0)
+		fclose(file);
 }
 
 void SudokuOperation::search_solution(int i, int j, int (&matrix)[9][9])
@@ -112,6 +114,7 @@ void SudokuOperation::search_solution(int i, int j, int (&matrix)[9][9])
 				return;
 			}
 		}
+		else 
 		//if current position is not vacant, jump it
 		if (matrix[i][j] != 0)
 			search_solution(i, j + 1, matrix);
@@ -185,29 +188,35 @@ void SudokuOperation::solve_sudoku(char *filename)
 		//*blank_or_enter is used for engulfing two kinds of characters, ' ' and '\n'
 		char blank_or_enter;
 		int i, j;
-		do
+
+		//this decision is just to eliminate the warnings
+		if (rfile != 0 && wfile != 0)
 		{
-			for (i = 0; i < 9; i++)
+			do
 			{
-				for (j = 0; j < 9; j++)
+				for (i = 0; i < 9; i++)
 				{
-					fscanf_s(rfile, "%d%c", &puzzle_matrix[i][j], &blank_or_enter, sizeof(int) + sizeof(char));
+					for (j = 0; j < 9; j++)
+					{
+						fscanf_s(rfile, "%d%c", &puzzle_matrix[i][j], &blank_or_enter, sizeof(int) + sizeof(char));
+					}
 				}
-			}
 
-			//search for one solution in puzzle_matrix[][], fill the puzzle_matrix from puzzle_matrix[0][0]
-			search_solution(0, 0, puzzle_matrix);
-			success_sign = false;
+				//search for one solution in puzzle_matrix[][], fill the puzzle_matrix from puzzle_matrix[0][0]
+				search_solution(0, 0, puzzle_matrix);
+				success_sign = false;
 
-			for (i = 0; i < 9; i++)
-			{
-				fprintf(wfile, "%d %d %d %d %d %d %d %d %d\n", puzzle_matrix[i][0], puzzle_matrix[i][1], puzzle_matrix[i][2], puzzle_matrix[i][3], puzzle_matrix[i][4], puzzle_matrix[i][5], puzzle_matrix[i][6], puzzle_matrix[i][7], puzzle_matrix[i][8]);
-			}
-			fprintf(wfile, "\n");
+				for (i = 0; i < 9; i++)
+				{
+					fprintf(wfile, "%d %d %d %d %d %d %d %d %d\n", puzzle_matrix[i][0], puzzle_matrix[i][1], puzzle_matrix[i][2], puzzle_matrix[i][3], puzzle_matrix[i][4], puzzle_matrix[i][5], puzzle_matrix[i][6], puzzle_matrix[i][7], puzzle_matrix[i][8]);
+				}
+				fprintf(wfile, "\n");
 
-		} while (fscanf_s(rfile, "%c", &blank_or_enter, sizeof(char))!=EOF);//engulf the '\n' between two sudoku matrixs
-		
+			} while (fscanf_s(rfile, "%c", &blank_or_enter, sizeof(char)) != EOF);//engulf the '\n' between two sudoku matrixs
+		}
 	}
-	fclose(rfile);
-	fclose(wfile);
+	if(rfile!=0)
+		fclose(rfile);
+	if(wfile!=0)
+		fclose(wfile);
 }
