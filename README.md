@@ -2,14 +2,22 @@
 BITCS, foundmentals of software engineering, personal project 
 --developed by Yixuan Guo.
 
-The structure of project：
+项目结构：
 
-sudoku.cpp
+├──README.md
 
-————Input.h
+├──sudoku
 
-————Input.cpp
+|    ├──sudoku.cpp
 
-————SudokuOperation.h
+|    ├──Input.h
 
-————SudokuOperation.cpp
+|    ├──Input.cpp
+
+|    ├──SudokuOperation.h
+
+|    └──SudokuOperation.cpp
+
+└──BIN
+
+    └──sudoku.exe
