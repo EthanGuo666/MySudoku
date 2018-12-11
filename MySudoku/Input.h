@@ -27,6 +27,9 @@ public:
 	//get the input filename if "-s" command is input, in order to pass these values to SudokuOperation class
 	char* get_filename();
 
+	//If any abnormal command is input and cause an error, this function return true;
+	bool found_error();
+
 private:
 	int argc;
 	char **argv;
