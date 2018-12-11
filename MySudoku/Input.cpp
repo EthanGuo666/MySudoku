@@ -27,6 +27,16 @@ void Input::input_type_analyse()
 			{
 				type = 's';
 				filename = argv[2];
+
+				//prevent us from opening a file that doesn't exist
+				errno_t err;
+				FILE *tryopen;
+				err = fopen_s(&tryopen, filename, "r");
+				if (err != 0)
+				{
+					input_error = true;
+					printf("The file you want to open doesn't exist\n");
+				}
 			}
 			else
 			{
@@ -41,6 +51,16 @@ void Input::input_type_analyse()
 					{
 						type = 's';
 						filename = argv[1];
+
+						//prevent us from opening a file that doesn't exist
+						errno_t err;
+						FILE *tryopen;
+						err = fopen_s(&tryopen, filename, "r");
+						if (err != 0)
+						{
+							input_error = true;
+							printf("The file you want to open doesn't exist\n");
+						}
 					}
 					else
 					{
@@ -71,6 +91,11 @@ int Input::get_num()
 char* Input::get_filename()
 {
 	return filename;
+}
+
+bool Input::found_error()
+{
+	return input_error;
 }
 
 int Input::tran_string_to_int(char string[])
