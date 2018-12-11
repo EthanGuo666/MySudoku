@@ -81,7 +81,12 @@ int Input::tran_string_to_int(char string[])
 	{
 		if (string[i] >= '0'&&string[i] <= '9')
 			temp_num = temp_num * 10 + (string[i] - '0');
-		else  printf("error found in parameter, you should input only integar\n");
+		else
+		{
+			input_error = true;
+			printf("error found in parameter, you should input only integar\n");
+			return -1;
+		}
 	}
 	return temp_num;
 }
