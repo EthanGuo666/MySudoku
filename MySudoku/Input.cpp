@@ -9,6 +9,7 @@ Input::Input(int argc, char *argv[])
 	filename = NULL;
 	type = 0;
 	num = 0;
+	input_error = false;
 }
 
 void Input::input_type_analyse()
@@ -41,13 +42,20 @@ void Input::input_type_analyse()
 						type = 's';
 						filename = argv[1];
 					}
-					else  printf("cmd input is anomalous! error found in method Input::inputTypeAnalyse()\n");
+					else
+					{
+						input_error = true;
+						printf("cmd input is anomalous! error found in method Input::inputTypeAnalyse()\n");
+					}
 				}
 			}
 		}
 	}
-	else  printf("%d\n",argc);
-	
+	else
+	{
+		input_error = true;
+		printf("Numbers of command parameters are not correct!%d\n", argc);
+	}
 }
 
 char Input::get_type()

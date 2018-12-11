@@ -33,4 +33,5 @@ private:
 	int num;
 	char type;
 	char* filename;
+	bool input_error;
 };
