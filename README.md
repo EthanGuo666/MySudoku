@@ -10,14 +10,13 @@
       cmd命令：“sudoku.exe -c 100000” (在文件相对路径下打开cmd命令行)
     
     2.求解数独:
-      powershell命令：“./sudoku.exe -s C:\\Users\\Administrator\\Desktop\\puzzle.txt
-      cmd命令：“sudoku.exe -s C:\\Users\\Administrator\\Desktop\\puzzle.txt”
+      powershell命令：“./sudoku.exe -s puzzle.txt
+      cmd命令：“sudoku.exe -s puzzle.txt”
                         
-    3.因为项目中有读取txt文件的操作，所以在命令行中输入待读取的数独题目的时候，请输入绝对路径。
-      例如:在sudoku.exe的文件夹中打开powershell命令行,输入“./sudoku.exe -s C:\\Users\\Administrator\\Desktop\\puzzle.txt”
-      即可从文件puzzle.txt中读取题目
+    3.因为项目中有读取txt文件的操作，所以在命令行中输入待读取的数独题目的时候，最好输入绝对路径。
+      否则sudoku.exe将从同一路径下读取输入的文件名。
     
-    4.在从绝对路径读取txt文件时，请确保题目所在的txt是存在的，否则本程序检测到此异常会打印出温馨提示
+    4.在读取txt文件前，请确保题目所在的txt是存在的，否则本程序检测到此异常会打印出温馨提示
     
     
 
