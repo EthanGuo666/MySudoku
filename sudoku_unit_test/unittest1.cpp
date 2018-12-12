@@ -33,7 +33,7 @@ namespace UnitTest_Sudoku
 
 			strcpy_s(argv_s[0], 100, "sudoku.exe");
 			strcpy_s(argv_s[1], 100, "-s");
-			strcpy_s(argv_s[2], 100, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\puzzle.txt");
+			strcpy_s(argv_s[2], 100, "puzzle.txt");
 
 		}
 
@@ -60,8 +60,8 @@ namespace UnitTest_Sudoku
 
 			Assert::AreEqual(input.type == 's', true);
 			Assert::AreEqual(input.get_type() == 's', true);
-			Assert::AreEqual(!strcmp(input.filename, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\puzzle.txt"), true);
-			Assert::AreEqual(!strcmp(input.get_filename(), "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\puzzle.txt"), true);
+			Assert::AreEqual(!strcmp(input.filename, "puzzle.txt"), true);
+			Assert::AreEqual(!strcmp(input.get_filename(), "puzzle.txt"), true);
 		}
 
 		TEST_METHOD(TestMethod3)
@@ -80,13 +80,13 @@ namespace UnitTest_Sudoku
 
 		TEST_METHOD(TestMethod4)
 		{
-			strcpy_s(argv_s[1], 100, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\puzzle.txt");
+			strcpy_s(argv_s[1], 100, "puzzle.txt");
 			strcpy_s(argv_s[2], 100, "-s");
 			Input input(argc, argv_s);
 			input.input_type_analyse();
 
-			Assert::AreEqual(!strcmp(input.filename, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\puzzle.txt"), true);
-			Assert::AreEqual(!strcmp(input.get_filename(), "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\puzzle.txt"), true);
+			Assert::AreEqual(!strcmp(input.filename, "puzzle.txt"), true);
+			Assert::AreEqual(!strcmp(input.get_filename(), "puzzle.txt"), true);
 		}
 
 		//test the reaction of method Input::input_type_analyse() when it receives an abnormal "-c" command
@@ -195,7 +195,7 @@ namespace UnitTest_Sudoku
 			sudoku.generate_ending(input.get_num());
 			FILE *rfile;
 			errno_t err;
-			err = fopen_s(&rfile, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\sudoku.txt", "r");
+			err = fopen_s(&rfile, "sudoku.txt", "r");
 			if (err != 0)
 				Assert::AreEqual(1 == 2, true);
 			else
