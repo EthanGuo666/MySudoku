@@ -30,7 +30,7 @@ public:
 	//Method check() is based on sudoku rules. It is called when we need to check the validation if we put integar n(1<=n<=9) at matrix[i][j]
 	bool check(int i, int j, int n, int matrix[9][9]);
 
-//private:
+private:
 	//The number of game ending now
 	int num_now;
 
