@@ -30,7 +30,7 @@ public:
 	//If any abnormal command is input and cause an error, this function return true;
 	bool found_error();
 
-private:
+//private:
 	int argc;
 	char **argv;
 	int num;
