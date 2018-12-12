@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /MySudoku/sudoku.txt
+/MySudoku/puzzle.txt
