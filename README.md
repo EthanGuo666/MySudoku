@@ -17,7 +17,7 @@
       例如:在sudoku.exe的文件夹中打开powershell命令行,输入“./sudoku.exe -s C:\\Users\\Administrator\\Desktop\\puzzle.txt”
       即可从文件puzzle.txt中读取题目
     
-    4.在从绝对路径读取txt文件时，请确保题目所在的txt是存在的，否则本程序检测到此异常会提示
+    4.在从绝对路径读取txt文件时，请确保题目所在的txt是存在的，否则本程序检测到此异常会打印出温馨提示
     
     
 
