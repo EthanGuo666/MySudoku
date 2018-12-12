@@ -47,7 +47,7 @@ void SudokuOperation::generate_ending(int num)
 {
 	errno_t err;
 	FILE *file;
-	err = fopen_s(&file, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\Debug\\sudoku.txt", "w");
+	err = fopen_s(&file, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\sudoku.txt", "w");
 	if (err != 0)
 		printf("file doesn't exist\n");
 
@@ -183,7 +183,7 @@ void SudokuOperation::solve_sudoku(char *filename)
 	errno_t err, erw;
 	FILE *rfile, *wfile;
 	err = fopen_s(&rfile, filename, "r");
-	erw = fopen_s(&wfile, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\Debug\\sudoku.txt", "w");
+	erw = fopen_s(&wfile, "C:\\Users\\Administrator\\Desktop\\MySudoku\\MySudoku\\sudoku.txt", "w");
 	if (err != 0 || erw != 0)
 		printf("the input or output file doesn't exist\n");
 	else
