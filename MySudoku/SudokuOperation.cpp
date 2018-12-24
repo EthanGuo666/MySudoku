@@ -43,6 +43,30 @@ void SudokuOperation::move_step_generate()
 	}
 }
 
+void SudokuOperation::output_result(FILE *file, int matrix[9][9])
+{
+	int pointer = 0;
+	char temp[164];
+	memset(temp, 0, sizeof(temp));
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++)
+		{
+			temp[pointer] = matrix[i][j] + '0';
+			pointer++;
+			if (j != 8)
+			{
+				temp[pointer] = ' ';
+				pointer++;
+			}
+		}
+		temp[pointer] = '\n';
+		pointer++;
+	}
+	temp[pointer] = '\n';
+	fputs(temp, file);
+}
+
 void SudokuOperation::generate_ending(int num)
 {
 	errno_t err;
@@ -80,21 +104,17 @@ void SudokuOperation::generate_ending(int num)
 				}
 				if (file != 0)//just for eliminate the warning
 				{
-					for (int j = 0; j < 9; j++)
-					{
-						fprintf(file, "%d %d %d %d %d %d %d %d %d\n", result_matrix[j][0], result_matrix[j][1], result_matrix[j][2], result_matrix[j][3], result_matrix[j][4], result_matrix[j][5], result_matrix[j][6], result_matrix[j][7], result_matrix[j][8]);
-					}
-					fprintf(file, "\n");
+					output_result(file, result_matrix);
 				}
 				num_now++;
 			}
 		}
 	}
-	if(file!=0)
+	if (file != 0)
 		fclose(file);
 }
 
-void SudokuOperation::search_solution(int i, int j, int (&matrix)[9][9])
+void SudokuOperation::search_solution(int i, int j, int(&matrix)[9][9])
 {
 	//if search has come to an end, return.
 	if (success_sign == true)
@@ -120,31 +140,31 @@ void SudokuOperation::search_solution(int i, int j, int (&matrix)[9][9])
 				return;
 			}
 		}
-		else 
-		//if current position is not vacant, jump it
-		if (matrix[i][j] != 0)
-			search_solution(i, j + 1, matrix);
 		else
-		{
-			//if i <= 8 && j <= 8, search in the current line.
-			if (i <= 8 && j <= 8)
+			//if current position is not vacant, jump it
+			if (matrix[i][j] != 0)
+				search_solution(i, j + 1, matrix);
+			else
 			{
-				//try each number from 1~9 at current position(i,j).
-				for (int n = 1; n <= 9; n++)
+				//if i <= 8 && j <= 8, search in the current line.
+				if (i <= 8 && j <= 8)
 				{
-					if (check(i, j, n, matrix))
+					//try each number from 1~9 at current position(i,j).
+					for (int n = 1; n <= 9; n++)
 					{
-						matrix[i][j] = n;
-						search_solution(i, j + 1, matrix);
-						//If we successfully find a solution at the end of searching, return
-						if (success_sign == true)
-							return;
-						else
-							matrix[i][j] = 0;
+						if (check(i, j, n, matrix))
+						{
+							matrix[i][j] = n;
+							search_solution(i, j + 1, matrix);
+							//If we successfully find a solution at the end of searching, return
+							if (success_sign == true)
+								return;
+							else
+								matrix[i][j] = 0;
+						}
 					}
 				}
 			}
-		}
 	}
 }
 
@@ -212,17 +232,13 @@ void SudokuOperation::solve_sudoku(char *filename)
 				search_solution(0, 0, puzzle_matrix);
 				success_sign = false;
 
-				for (i = 0; i < 9; i++)
-				{
-					fprintf(wfile, "%d %d %d %d %d %d %d %d %d\n", puzzle_matrix[i][0], puzzle_matrix[i][1], puzzle_matrix[i][2], puzzle_matrix[i][3], puzzle_matrix[i][4], puzzle_matrix[i][5], puzzle_matrix[i][6], puzzle_matrix[i][7], puzzle_matrix[i][8]);
-				}
-				fprintf(wfile, "\n");
+				output_result(wfile, puzzle_matrix);
 
 			} while (fscanf_s(rfile, "%c", &blank_or_enter, sizeof(char)) != EOF);//engulf the '\n' between two sudoku matrixs
 		}
 	}
-	if(rfile!=0)
+	if (rfile != 0)
 		fclose(rfile);
-	if(wfile!=0)
+	if (wfile != 0)
 		fclose(wfile);
 }
