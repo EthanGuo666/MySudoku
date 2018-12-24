@@ -21,6 +21,9 @@ public:
 	//Generate how many steps each line move, put the result into move_step_matrix
 	void move_step_generate();
 
+	//this method is very quick, and it is designed to output the result of generate_ending() and solve_solution()
+	void output_result();
+
 	//Solve the Sudoku game if '-s' and filename is fetched from cmd window
 	void solve_sudoku(char *filename);
 
