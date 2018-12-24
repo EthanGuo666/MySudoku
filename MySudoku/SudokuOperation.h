@@ -22,7 +22,7 @@ public:
 	void move_step_generate();
 
 	//this method is very quick, and it is designed to output the result of generate_ending() and solve_solution()
-	void output_result(FILE *file);
+	void output_result(FILE *file, int matrix[9][9]);
 
 	//Solve the Sudoku game if '-s' and filename is fetched from cmd window
 	void solve_sudoku(char *filename);
