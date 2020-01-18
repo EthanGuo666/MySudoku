@@ -1,6 +1,6 @@
 # MySudoku
 
-    This fast sudoku solver is a personal project for BITCS Foundmentals of Software Engineering.
+    🏆This fast sudoku solver is a personal project for BITCS Foundmentals of Software Engineering.
 
 #使用说明：
     
