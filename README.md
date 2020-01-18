@@ -1,17 +1,16 @@
 # MySudoku
 
-    BITCS, foundmentals of software engineering, personal project
-    --developed by Yixuan Guo.
+    This fast sudoku solver is a personal project for BITCS Foundmentals of Software Engineering.
 
 #使用说明：
     
-    1.生成数独终局:
-      powershell命令：“./sudoku.exe -c 100000” (在sudoku.exe所在的文件夹中“shift+鼠标右键”打开powershell输入)
-      cmd命令：“sudoku.exe -c 100000” (在文件相对路径下打开cmd命令行)
+    1.if you want to generate 100000 sudoku ending state:
+      powershell command：“./sudoku.exe -c 100000” (在sudoku.exe所在的文件夹中“shift+鼠标右键”打开powershell输入)
+      cmd command：“sudoku.exe -c 100000” (在文件相对路径下打开cmd命令行)
     
-    2.求解数独:
-      powershell命令：“./sudoku.exe -s puzzle.txt
-      cmd命令：“sudoku.exe -s puzzle.txt”
+    2.if you want to solve a sudoku problem which is stored in a text file:
+      powershell command：“./sudoku.exe -s puzzle.txt
+      cmd command：“sudoku.exe -s puzzle.txt”
                         
     3.因为项目中有读取txt文件的操作，所以在命令行中输入待读取的数独题目的时候，最好输入绝对路径。
       否则sudoku.exe将从同一路径下读取输入的文件名。
