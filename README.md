@@ -4,7 +4,7 @@
 
 #使用说明：
     
-    1.if you want to generate 100000 sudoku ending state:
+    1.if you want to generate 100000 sudoku ending states, and any one is different each other:
       powershell command：“./sudoku.exe -c 100000” (在sudoku.exe所在的文件夹中“shift+鼠标右键”打开powershell输入)
       cmd command：“sudoku.exe -c 100000” (在文件相对路径下打开cmd命令行)
     
